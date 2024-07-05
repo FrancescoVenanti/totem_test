@@ -16,7 +16,7 @@ class OrderScreen extends StatelessWidget {
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.amber,
+                color: const Color.fromARGB(255, 255, 150, 185),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Center(child: Text('Contenitore totale ordine')),
@@ -38,7 +38,7 @@ class OrderScreen extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.deepPurple,
+                            color: const Color.fromARGB(255, 238, 61, 120),
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
@@ -50,7 +50,7 @@ class OrderScreen extends StatelessWidget {
                         flex: 3,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.deepOrange,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
@@ -67,7 +67,7 @@ class OrderScreen extends StatelessWidget {
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.lightBlue,
+                color: const Color.fromARGB(255, 255, 150, 185),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Center(child: Text('Contenitore footer')),
