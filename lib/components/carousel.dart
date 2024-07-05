@@ -14,12 +14,14 @@ class Carousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterCarousel(
       options: CarouselOptions(
-          height: 400.0,
-          showIndicator: false,
-          slideIndicator: const CircularSlideIndicator(),
-          autoPlay: true,
-          autoPlayAnimationDuration: const Duration(seconds: 1),
-          autoPlayInterval: const Duration(seconds: 2)),
+        height: 400.0,
+        showIndicator: false,
+        slideIndicator: const CircularSlideIndicator(),
+        autoPlay: true,
+        autoPlayAnimationDuration: const Duration(seconds: 1),
+        autoPlayInterval: const Duration(seconds: 2),
+        enableInfiniteScroll: true,
+      ),
       items: images.map((i) {
         return Builder(
           builder: (BuildContext context) {
