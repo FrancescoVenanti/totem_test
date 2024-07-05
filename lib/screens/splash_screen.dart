@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:totem_test/components/carousel.dart';
 import 'package:totem_test/screens/order_screen.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({
@@ -23,9 +25,11 @@ class SplashScreen extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: 400,
-                decoration: const BoxDecoration(color: Colors.amber),
-                child: const Center(
-                    child: Text('Questo blocco conterra un\'immagine')),
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 227, 117, 154)),
+                child: Center(
+                  child: Carousel(),
+                ),
               ),
               const Expanded(
                 child: Center(
