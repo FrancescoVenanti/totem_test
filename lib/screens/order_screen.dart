@@ -15,7 +15,10 @@ class OrderScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 100,
-              decoration: const BoxDecoration(color: Colors.amber),
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: const Center(child: Text('Contenitore totale ordine')),
             ),
             const SizedBox(
@@ -23,7 +26,10 @@ class OrderScreen extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                decoration: const BoxDecoration(color: Colors.green),
+                decoration: BoxDecoration(
+                  color: Colors.black26,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -31,8 +37,9 @@ class OrderScreen extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                       ),
@@ -42,8 +49,9 @@ class OrderScreen extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.deepOrange,
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                       ),
@@ -58,7 +66,10 @@ class OrderScreen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 100,
-              decoration: const BoxDecoration(color: Colors.lightBlue),
+              decoration: BoxDecoration(
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: const Center(child: Text('Contenitore footer')),
             ),
           ],
