@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:totem_test/components/categorySection.dart';
+import 'package:totem_test/models/category_item.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({
@@ -13,6 +15,7 @@ class OrderScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
@@ -25,39 +28,31 @@ class OrderScreen extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 238, 61, 120),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 238, 61, 120),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                    ],
+                      child: const CategorySection(),
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(

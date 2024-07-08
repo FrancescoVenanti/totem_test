@@ -5,9 +5,9 @@ class Carousel extends StatelessWidget {
   Carousel({super.key});
 
   final List<String> images = [
-    '../lib/assets/img/gelato.png',
-    '../lib/assets/img/gelato2.png',
-    '../lib/assets/img/gelato3.png'
+    '../assets/img/gelato.png',
+    '../assets/img/gelato2.png',
+    '../assets/img/gelato3.png'
   ];
 
   @override

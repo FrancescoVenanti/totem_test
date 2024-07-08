@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:totem_test/components/carousel.dart';
 import 'package:totem_test/screens/order_screen.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class SplashScreen extends StatelessWidget {
-  SplashScreen({
+  const SplashScreen({
     super.key,
   });
 
