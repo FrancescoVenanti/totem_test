@@ -7,7 +7,7 @@ class CategorySection extends StatelessWidget {
     super.key,
   });
 
-  var categorie = Utils.categories;
+  final categorie = Utils.categories;
 
   @override
   Widget build(BuildContext context) {
