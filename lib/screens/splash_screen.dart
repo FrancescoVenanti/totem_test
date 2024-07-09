@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:totem_test/components/carousel.dart';
+import 'package:totem_test/components/my_bottom_bar.dart';
 import 'package:totem_test/screens/order_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -29,32 +30,55 @@ class SplashScreen extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                height: 400,
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 255, 150, 185)),
-                child: Center(
-                  child: Carousel(),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 150, 185)),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Carousel(),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
+                flex: 1,
                 child: Container(
                   decoration: BoxDecoration(gradient: myGradient),
-                  child: const Center(
-                    child: Text(
-                      'Tocca per iniziare',
-                      style: TextStyle(
-                          color: Colors.blueGrey,
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.black38,
+                                borderRadius: BorderRadius.circular(200)),
+                            child: const Text(
+                              'Tocca per iniziare',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
         ),
+        bottomNavigationBar: MyBottomBar(),
       ),
     );
   }

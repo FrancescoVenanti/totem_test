@@ -37,8 +37,22 @@ class _SingleProductState extends State<SingleProduct> {
                   });
                 },
                 child: const Icon(CupertinoIcons.minus)),
-            Text(widget.prodotto.description),
-            Text(prodCounter.toString()),
+            Row(
+              children: [
+                Text(widget.prodotto.description),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black26),
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('$prodCounter'),
+                  ),
+                ),
+              ],
+            ),
             OutlinedButton(
                 style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Colors.white)),

@@ -22,6 +22,10 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const badges.Badge(
+            badgeAnimation: badges.BadgeAnimation.scale(
+              animationDuration: Duration(seconds: 1),
+              loopAnimation: true,
+            ),
             badgeStyle: badges.BadgeStyle(
                 badgeColor: Color.fromARGB(255, 238, 61, 120)),
             badgeContent: Text(
