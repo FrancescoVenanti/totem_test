@@ -31,7 +31,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
     List<Widget> prodotti = [];
     for (var element in filteredProd) {
-      prodotti.add(SingleProduct(a: element));
+      prodotti.add(SingleProduct(prodotto: element));
     }
 
     return Scaffold(

@@ -5,10 +5,10 @@ import 'package:totem_test/models/product_item.dart';
 class SingleProduct extends StatefulWidget {
   const SingleProduct({
     super.key,
-    required this.a,
+    required this.prodotto,
   });
 
-  final ProductItem a;
+  final ProductItem prodotto;
 
   @override
   State<SingleProduct> createState() => _SingleProductState();
@@ -37,7 +37,7 @@ class _SingleProductState extends State<SingleProduct> {
                   });
                 },
                 child: const Icon(CupertinoIcons.minus)),
-            Text(widget.a.description),
+            Text(widget.prodotto.description),
             Text(prodCounter.toString()),
             OutlinedButton(
                 style: const ButtonStyle(
