@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:totem_test/components/category_section.dart';
+import 'package:totem_test/components/my_bottom_bar.dart';
 import 'package:totem_test/components/single_product.dart';
+import 'package:totem_test/components/top_bar.dart';
 import 'package:totem_test/models/product_item.dart';
 import 'package:totem_test/services/utlis.dart';
 
@@ -39,16 +41,7 @@ class _OrderScreenState extends State<OrderScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 150, 185),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(child: Text('Contenitore totale ordine')),
-            ),
+            const TopBar(),
             const SizedBox(
               height: 20,
             ),
@@ -89,18 +82,10 @@ class _OrderScreenState extends State<OrderScreen> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 255, 150, 185),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(child: Text('Contenitore footer')),
-            ),
           ],
         ),
       ),
+      bottomNavigationBar: const MyBottomBar(),
     );
   }
 }
