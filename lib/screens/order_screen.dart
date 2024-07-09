@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:totem_test/components/categorySection.dart';
-import 'package:totem_test/models/category_item.dart';
+import 'package:totem_test/components/category_section.dart';
 
 class OrderScreen extends StatelessWidget {
   const OrderScreen({
@@ -37,7 +36,7 @@ class OrderScreen extends StatelessWidget {
                         color: const Color.fromARGB(255, 238, 61, 120),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const CategorySection(),
+                      child: CategorySection(),
                     ),
                   ),
                   const SizedBox(

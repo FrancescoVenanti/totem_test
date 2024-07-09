@@ -10,10 +10,10 @@ class Utils {
     final objCategories = jsonDecode(categoriesString) as List<dynamic>;
 
     /* for (int i = 0; i < objCategories.length; i++) {
-   categories.add(CategoryItem.fromJson(o));
-  } */
-    objCategories.map((item) {
+      categories.add(CategoryItem.fromJson(objCategories[i]));
+    } */
+    for (var item in objCategories) {
       categories.add(CategoryItem.fromJson(item));
-    });
+    }
   }
 }

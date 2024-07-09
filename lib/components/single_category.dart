@@ -13,7 +13,7 @@ class SingleCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Card(
           color: const Color.fromARGB(255, 255, 150, 185),
