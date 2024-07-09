@@ -5,6 +5,8 @@ import 'package:totem_test/services/utlis.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Utils.initCategories();
+  await Utils.initProducts();
+  await Utils.initExtras();
 
   runApp(const TotemApp());
 }
