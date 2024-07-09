@@ -31,7 +31,7 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Carousel(),
                     ),
                   ),

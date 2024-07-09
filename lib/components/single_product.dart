@@ -28,15 +28,20 @@ class _SingleProductState extends State<SingleProduct> {
             child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            OutlinedButton(
-                style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.white)),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   setState(() {
                     prodCounter > 0 ? prodCounter-- : prodCounter = 0;
                   });
                 },
-                child: const Icon(CupertinoIcons.minus)),
+                child: const Icon(
+                  CupertinoIcons.minus,
+                  color: Colors.black,
+                )),
             Row(
               children: [
                 Text(widget.prodotto.description),
@@ -53,15 +58,20 @@ class _SingleProductState extends State<SingleProduct> {
                 ),
               ],
             ),
-            OutlinedButton(
-                style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.white)),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   setState(() {
                     prodCounter++;
                   });
                 },
-                child: const Icon(CupertinoIcons.add)),
+                child: const Icon(
+                  CupertinoIcons.add,
+                  color: Colors.black,
+                )),
           ],
         )),
       ),
