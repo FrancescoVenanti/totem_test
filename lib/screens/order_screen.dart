@@ -1,40 +1,40 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/components/category_section.dart';
 import 'package:totem_test/components/my_bottom_bar.dart';
 import 'package:totem_test/components/single_product.dart';
 import 'package:totem_test/components/top_bar.dart';
 import 'package:totem_test/models/product_item.dart';
+import 'package:totem_test/providers/category_provider.dart';
 import 'package:totem_test/services/utlis.dart';
 
-class OrderScreen extends StatefulWidget {
+class OrderScreen extends ConsumerStatefulWidget {
   const OrderScreen({
     super.key,
   });
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  ConsumerState<OrderScreen> createState() => _OrderScreenState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
-  String selectedCategory = Utils.categories[0].categoryId;
+void setDefaultCategory(WidgetRef ref) async {
+  await Future.delayed(const Duration(milliseconds: 100));
+  if (ref.read(categoryProvider) == null) {
+    ref
+        .read(categoryProvider.notifier)
+        .setCategory(Utils.categories[0].categoryId);
+  }
+}
+
+class _OrderScreenState extends ConsumerState<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    void handleChangeCategory(String cat) {
-      setState(() {
-        selectedCategory = cat;
-      });
-    }
+    setDefaultCategory(ref);
+    String? selectedCategory = ref.watch(categoryProvider);
 
     List<ProductItem> filteredProd = Utils.products.where((element) {
       return element.categoryId == selectedCategory;
     }).toList();
-
-    List<Widget> prodotti = [];
-    for (var element in filteredProd) {
-      prodotti.add(SingleProduct(prodotto: element));
-    }
 
     return Scaffold(
       body: Padding(
@@ -55,9 +55,7 @@ class _OrderScreenState extends State<OrderScreen> {
                         color: const Color.fromARGB(255, 238, 61, 120),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: CategorySection(
-                        handleChangeCategory: handleChangeCategory,
-                      ),
+                      child: const CategorySection(),
                     ),
                   ),
                   const SizedBox(
@@ -71,8 +69,9 @@ class _OrderScreenState extends State<OrderScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: prodotti,
+                        children: filteredProd
+                            .map((element) => SingleProduct(prodotto: element))
+                            .toList(),
                       ),
                     ),
                   ),

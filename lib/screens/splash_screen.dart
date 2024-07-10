@@ -24,7 +24,7 @@ class SplashScreen extends StatelessWidget {
           return const OrderScreen();
         })); */
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const OrderScreen()));
+            .push(MaterialPageRoute(builder: (context) => OrderScreen()));
       },
       child: Scaffold(
         body: Center(
@@ -78,7 +78,7 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: MyBottomBar(),
+        bottomNavigationBar: const MyBottomBar(),
       ),
     );
   }

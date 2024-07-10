@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/screens/splash_screen.dart';
 import 'package:totem_test/services/utlis.dart';
 
@@ -8,7 +9,7 @@ void main() async {
   await Utils.initProducts();
   await Utils.initExtras();
 
-  runApp(const TotemApp());
+  runApp(const ProviderScope(child: TotemApp()));
 }
 
 class TotemApp extends StatelessWidget {

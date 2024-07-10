@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem_test/providers/category_provider.dart';
 import 'package:totem_test/services/utlis.dart';
 import 'package:totem_test/components/single_category.dart';
 
-class CategorySection extends StatefulWidget {
-  const CategorySection({super.key, required this.handleChangeCategory});
-
-  final Function(String) handleChangeCategory;
+class CategorySection extends ConsumerStatefulWidget {
+  const CategorySection({super.key});
 
   @override
-  State<CategorySection> createState() => _CategorySectionState();
+  ConsumerState<CategorySection> createState() => _CategorySectionState();
 }
 
-class _CategorySectionState extends State<CategorySection> {
-  int selectedIndex = 0;
-
+class _CategorySectionState extends ConsumerState<CategorySection> {
   @override
   Widget build(BuildContext context) {
-    void handleClick(int i) {
-      setState(() {
-        selectedIndex = i;
-      });
-    }
-
+    String? selectedCategory = ref.watch(categoryProvider);
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Column(
@@ -30,17 +23,17 @@ class _CategorySectionState extends State<CategorySection> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                    selectedIndex = i;
-                    widget.handleChangeCategory(Utils.categories[i].categoryId);
-                  });
+                  ref
+                      .read(categoryProvider.notifier)
+                      .setCategory(Utils.categories[i].categoryId);
                 },
                 child: SingleCategory(
                     text: Utils.categories[i].name,
                     image: Utils.categories[i].image,
-                    cardColor: selectedIndex == i
-                        ? Colors.white
-                        : const Color.fromARGB(255, 255, 150, 185)),
+                    cardColor:
+                        selectedCategory == Utils.categories[i].categoryId
+                            ? Colors.white
+                            : const Color.fromARGB(255, 255, 150, 185)),
               ),
             ),
         ],
