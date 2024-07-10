@@ -33,6 +33,7 @@ class SplashScreen extends ConsumerWidget {
             .push(MaterialPageRoute(builder: (context) => const OrderScreen()));
       },
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: Center(
           child: Column(
             children: [
@@ -40,8 +41,6 @@ class SplashScreen extends ConsumerWidget {
                 flex: 4,
                 child: Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 255, 150, 185)),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
                     child: Container(
@@ -53,20 +52,20 @@ class SplashScreen extends ConsumerWidget {
               ),
               Expanded(
                 flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(gradient: myGradient),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.black38,
-                                borderRadius: BorderRadius.circular(200)),
-                            child: const Text(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 47, 47, 47),
+                              borderRadius: BorderRadius.circular(200)),
+                          child: const Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: Text(
                               'Tocca per iniziare',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -77,8 +76,8 @@ class SplashScreen extends ConsumerWidget {
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

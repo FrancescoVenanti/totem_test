@@ -19,7 +19,8 @@ class MyBottomBar extends StatelessWidget {
           ElevatedButton(
             onPressed: () => {},
             style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.black),
+                backgroundColor:
+                    WidgetStatePropertyAll(Color.fromARGB(255, 47, 47, 47)),
                 padding: WidgetStatePropertyAll(
                     EdgeInsets.fromLTRB(12, 18, 12, 18))),
             child: const Row(
@@ -42,7 +43,8 @@ class MyBottomBar extends StatelessWidget {
           ElevatedButton(
             onPressed: () => {},
             style: const ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.black),
+                backgroundColor:
+                    WidgetStatePropertyAll(Color.fromARGB(255, 47, 47, 47)),
                 padding: WidgetStatePropertyAll(
                     EdgeInsets.fromLTRB(12, 18, 12, 18))),
             child: const Row(

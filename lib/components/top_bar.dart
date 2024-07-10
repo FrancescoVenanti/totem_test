@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/providers/order_provider.dart';
+import 'package:totem_test/screens/order_recap_screen.dart';
 
 class TopBar extends ConsumerWidget {
   const TopBar({
@@ -11,7 +12,7 @@ class TopBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int badgeCounter = ref.watch(orderProvider)?.rows.length ?? 0;
+    String? badgeCounter = ref.watch(orderProvider.notifier).totalCartItems();
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
       width: double.infinity,
@@ -32,7 +33,7 @@ class TopBar extends ConsumerWidget {
             badgeStyle: const badges.BadgeStyle(
                 badgeColor: Color.fromARGB(255, 238, 61, 120)),
             badgeContent: Text(
-              badgeCounter.toString(),
+              badgeCounter ?? 'asas',
               style: const TextStyle(color: Colors.white),
             ),
             child: const Icon(
@@ -60,7 +61,10 @@ class TopBar extends ConsumerWidget {
                       EdgeInsets.fromLTRB(12, 20, 12, 20)),
                   backgroundColor: WidgetStatePropertyAll(
                       Color.fromARGB(255, 238, 61, 120))),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const OrderRecapScreen()));
+              },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

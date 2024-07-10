@@ -24,6 +24,10 @@ class OrderProvider extends StateNotifier<OrderItem?> {
         .length
         .toString();
   }
+
+  String? totalCartItems() {
+    return state?.rows.length.toString();
+  }
 }
 
 final orderProvider = StateNotifierProvider<OrderProvider, OrderItem?>((ref) {
