@@ -17,19 +17,9 @@ class OrderScreen extends ConsumerStatefulWidget {
   ConsumerState<OrderScreen> createState() => _OrderScreenState();
 }
 
-void setDefaultCategory(WidgetRef ref) async {
-  await Future.delayed(const Duration(milliseconds: 100));
-  if (ref.read(categoryProvider) == null) {
-    ref
-        .read(categoryProvider.notifier)
-        .setCategory(Utils.categories[0].categoryId);
-  }
-}
-
 class _OrderScreenState extends ConsumerState<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    setDefaultCategory(ref);
     String? selectedCategory = ref.watch(categoryProvider);
 
     List<ProductItem> filteredProd = Utils.products.where((element) {
@@ -68,9 +58,11 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Column(
+                      child: ListView(
                         children: filteredProd
-                            .map((element) => SingleProduct(prodotto: element))
+                            .map((element) => SingleProduct(
+                                prodotto: element,
+                                key: ValueKey(element.productId)))
                             .toList(),
                       ),
                     ),

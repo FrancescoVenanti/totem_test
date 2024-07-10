@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem_test/providers/order_provider.dart';
 
-class TopBar extends StatelessWidget {
+class TopBar extends ConsumerWidget {
   const TopBar({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    int badgeCounter = ref.watch(orderProvider)?.rows.length ?? 0;
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
       width: double.infinity,
@@ -21,18 +24,18 @@ class TopBar extends StatelessWidget {
           child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const badges.Badge(
-            badgeAnimation: badges.BadgeAnimation.scale(
+          badges.Badge(
+            badgeAnimation: const badges.BadgeAnimation.scale(
               animationDuration: Duration(seconds: 1),
               loopAnimation: true,
             ),
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
                 badgeColor: Color.fromARGB(255, 238, 61, 120)),
             badgeContent: Text(
-              '0',
-              style: TextStyle(color: Colors.white),
+              badgeCounter.toString(),
+              style: const TextStyle(color: Colors.white),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.shopping_cart,
               size: 32,
             ),

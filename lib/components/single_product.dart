@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/models/product_item.dart';
+import 'package:totem_test/providers/order_provider.dart';
 
-class SingleProduct extends StatefulWidget {
+class SingleProduct extends ConsumerStatefulWidget {
   const SingleProduct({
     super.key,
     required this.prodotto,
@@ -11,11 +13,10 @@ class SingleProduct extends StatefulWidget {
   final ProductItem prodotto;
 
   @override
-  State<SingleProduct> createState() => _SingleProductState();
+  ConsumerState<SingleProduct> createState() => _SingleProductState();
 }
 
-class _SingleProductState extends State<SingleProduct> {
-  int prodCounter = 0;
+class _SingleProductState extends ConsumerState<SingleProduct> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,25 +31,21 @@ class _SingleProductState extends State<SingleProduct> {
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {
-                      setState(() {
-                        prodCounter > 0 ? prodCounter-- : prodCounter = 0;
-                      });
-                    },
-                    child: const Icon(
-                      CupertinoIcons.minus,
-                      color: Colors.black,
-                    )),
+                Text(widget.prodotto.description),
                 Row(
                   children: [
-                    Text(widget.prodotto.description),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                        onPressed: () {},
+                        child: const Icon(
+                          CupertinoIcons.minus,
+                          color: Colors.black,
+                        )),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                      margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.black26),
@@ -56,25 +53,32 @@ class _SingleProductState extends State<SingleProduct> {
                               const BorderRadius.all(Radius.circular(8))),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('$prodCounter'),
+                        child: Text(
+                          ref
+                                  .watch(orderProvider.notifier)
+                                  .getItemCount(widget.prodotto.productId) ??
+                              '0',
+                        ),
                       ),
                     ),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                        onPressed: () {
+                          setState(() {
+                            ref
+                                .watch(orderProvider.notifier)
+                                .addItem(widget.prodotto.productId);
+                          });
+                        },
+                        child: const Icon(
+                          CupertinoIcons.add,
+                          color: Colors.black,
+                        )),
                   ],
                 ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {
-                      setState(() {
-                        prodCounter++;
-                      });
-                    },
-                    child: const Icon(
-                      CupertinoIcons.add,
-                      color: Colors.black,
-                    )),
               ],
             )),
           ),

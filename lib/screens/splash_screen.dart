@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/components/carousel.dart';
 import 'package:totem_test/components/my_bottom_bar.dart';
+import 'package:totem_test/providers/category_provider.dart';
+import 'package:totem_test/providers/order_provider.dart';
 import 'package:totem_test/screens/order_screen.dart';
+import 'package:totem_test/services/utlis.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends ConsumerWidget {
   const SplashScreen({
     super.key,
   });
@@ -17,14 +21,16 @@ class SplashScreen extends StatelessWidget {
       ]);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        /*  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return const OrderScreen();
-        })); */
+        ref
+            .read(categoryProvider.notifier)
+            .setCategory(Utils.categories[0].categoryId);
+
+        ref.read(orderProvider.notifier).init();
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => OrderScreen()));
+            .push(MaterialPageRoute(builder: (context) => const OrderScreen()));
       },
       child: Scaffold(
         body: Center(
