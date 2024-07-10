@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:totem_test/components/my_bottom_bar.dart';
 import 'package:totem_test/components/single_order_item.dart';
 import 'package:totem_test/screens/payment_screen.dart';
@@ -56,7 +57,8 @@ class _OrderRecapScreenState extends State<OrderRecapScreen> {
                                 borderRadius: BorderRadius.circular(40),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -81,9 +83,9 @@ class _OrderRecapScreenState extends State<OrderRecapScreen> {
                               ),
                             ),
                           ),
-                          const Expanded(
-                            child: Column(
-                              children: [
+                          Expanded(
+                            child: ListView(
+                              children: const [
                                 SingleOrderItem(),
                                 SizedBox(
                                   height: 8,

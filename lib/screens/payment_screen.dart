@@ -36,8 +36,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Center(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(171, 255, 255, 255)
-                        .withOpacity(0.3),
+                    color: Color.fromARGB(212, 255, 255, 255).withOpacity(0.3),
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Padding(
@@ -62,7 +61,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       color: Colors.black)),
                               const Column(
                                 children: [
-                                  Text('Come Preferisci',
+                                  Text('Dove vorresti',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 24)),
                                   Text('pagare?',
@@ -80,19 +79,37 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height: MediaQuery.of(context).size.width * 0.3,
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.35,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20)),
+                                  child: Image.asset(
+                                    '../assets/img/pagaTotem.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height: MediaQuery.of(context).size.width * 0.3,
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.35,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20)),
+                                  child: Image.asset(
+                                    '../assets/img/pagaCassa.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               )
                             ],
