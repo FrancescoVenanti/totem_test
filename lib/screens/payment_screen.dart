@@ -36,7 +36,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Center(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(212, 255, 255, 255).withOpacity(0.3),
+                    color: const Color.fromARGB(212, 255, 255, 255)
+                        .withOpacity(0.3),
                     borderRadius: BorderRadius.circular(40),
                   ),
                   child: Padding(

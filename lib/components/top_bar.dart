@@ -5,13 +5,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/providers/order_provider.dart';
 import 'package:totem_test/screens/order_recap_screen.dart';
 
-class TopBar extends ConsumerWidget {
+class TopBar extends ConsumerStatefulWidget {
   const TopBar({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<TopBar> createState() => _TopBarState();
+}
+
+class _TopBarState extends ConsumerState<TopBar> {
+  @override
+  Widget build(BuildContext context) {
     String? badgeCounter = ref.watch(orderProvider.notifier).totalCartItems();
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -33,7 +38,7 @@ class TopBar extends ConsumerWidget {
             badgeStyle: const badges.BadgeStyle(
                 badgeColor: Color.fromARGB(255, 238, 61, 120)),
             badgeContent: Text(
-              badgeCounter ?? 'asas',
+              badgeCounter.toString(),
               style: const TextStyle(color: Colors.white),
             ),
             child: const Icon(
