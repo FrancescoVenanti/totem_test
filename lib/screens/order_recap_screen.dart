@@ -1,19 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/components/my_bottom_bar.dart';
 import 'package:totem_test/components/single_order_item.dart';
+import 'package:totem_test/providers/order_provider.dart';
 import 'package:totem_test/screens/payment_screen.dart';
 
-class OrderRecapScreen extends StatefulWidget {
+class OrderRecapScreen extends ConsumerStatefulWidget {
   const OrderRecapScreen({super.key});
 
   @override
-  State<OrderRecapScreen> createState() => _OrderRecapScreenState();
+  ConsumerState<OrderRecapScreen> createState() => _OrderRecapScreenState();
 }
 
-class _OrderRecapScreenState extends State<OrderRecapScreen> {
+class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
   @override
   Widget build(BuildContext context) {
+    var order = ref.read(orderProvider);
+    var orderList = ref.read(orderProvider)?.rows;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
