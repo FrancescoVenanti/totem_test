@@ -19,6 +19,11 @@ class SingleProduct extends ConsumerStatefulWidget {
 class _SingleProductState extends ConsumerState<SingleProduct> {
   @override
   Widget build(BuildContext context) {
+    int? itemQt = ref
+        .watch(orderProvider)
+        ?.rows
+        .where((element) => element.productId == widget.prodotto.productId)
+        .length;
     return Column(
       children: [
         Container(
@@ -39,7 +44,9 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                             padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
-                        onPressed: () {},
+                        onPressed: () => ref
+                            .read(orderProvider.notifier)
+                            .removeItem(widget.prodotto.productId),
                         child: const Icon(
                           CupertinoIcons.minus,
                           color: Colors.black,
@@ -53,12 +60,7 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                               const BorderRadius.all(Radius.circular(8))),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          ref
-                                  .watch(orderProvider.notifier)
-                                  .getItemCount(widget.prodotto.productId) ??
-                              '0',
-                        ),
+                        child: Text('$itemQt'),
                       ),
                     ),
                     ElevatedButton(
@@ -66,13 +68,9 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                             padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
-                        onPressed: () {
-                          setState(() {
-                            ref
-                                .watch(orderProvider.notifier)
-                                .addItem(widget.prodotto.productId);
-                          });
-                        },
+                        onPressed: () => ref
+                            .read(orderProvider.notifier)
+                            .addItem(widget.prodotto.productId),
                         child: const Icon(
                           CupertinoIcons.add,
                           color: Colors.black,

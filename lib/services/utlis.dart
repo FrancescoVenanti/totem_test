@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:totem_test/models/category_item.dart';
 import 'package:totem_test/models/extra_item.dart';
+import 'package:totem_test/models/order_item.dart';
 import 'package:totem_test/models/product_item.dart';
 import 'package:uuid/uuid.dart';
 
@@ -36,5 +37,11 @@ class Utils {
 
   static String getUUID() {
     return const Uuid().v8();
+  }
+
+  static int getProductsRowCount(OrderItem order, String productId) {
+    return order.rows.where((element) {
+      return element.productId == productId;
+    }).length;
   }
 }
