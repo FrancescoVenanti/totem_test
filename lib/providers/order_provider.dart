@@ -50,6 +50,14 @@ class OrderProvider extends StateNotifier<OrderItem?> {
     }
     return prezzo;
   }
+
+  void removeRow(String rowId) {
+    var tempOrder = state?.clone();
+    var elementToRemove = tempOrder?.rows.lastWhere((e) => e.rowId == rowId);
+    tempOrder?.rows.remove(elementToRemove);
+
+    state = tempOrder;
+  }
 }
 
 final orderProvider = StateNotifierProvider<OrderProvider, OrderItem?>((ref) {

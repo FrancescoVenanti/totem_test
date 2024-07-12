@@ -47,11 +47,19 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
             ),
             Row(
               children: [
-                Text('$productPrice €', style: TextStyle(color: Colors.white)),
-                Icon(CupertinoIcons.pencil, color: Colors.white),
-                Icon(
-                  CupertinoIcons.delete,
-                  color: Colors.white,
+                Text('$productPrice €',
+                    style: const TextStyle(color: Colors.white)),
+                const Icon(CupertinoIcons.pencil, color: Colors.white),
+                ElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(orderProvider.notifier)
+                        .removeRow(widget.row.rowId);
+                  },
+                  child: const Icon(
+                    CupertinoIcons.delete,
+                    color: Colors.red,
+                  ),
                 ),
               ],
             ),
