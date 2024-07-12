@@ -2,6 +2,7 @@
   {
     "productId": "001",
     "description": "Cono Piccolo",
+    "image": "../assets/img/cono-piccolo.jpg",
     "price": 3.0,
     "categoryId": "C01",
     "extras": [
@@ -22,6 +23,7 @@
   {
     "productId": "002",
     "description": "Cono Medio",
+    "image": "../assets/img/cono-medio.jpg",
     "price": 4.0,
     "categoryId": "C01",
     "extras": [
@@ -42,6 +44,133 @@
   {
     "productId": "003",
     "description": "Cono Grande",
+    "image": "../assets/img/cono-grande.jpg",
+    "price": 4.5,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "101",
+    "description": "Cono Piccolo 2",
+    "image": "../assets/img/cono-piccolo.jpg",
+    "price": 3.0,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "102",
+    "description": "Cono Medio 2",
+    "image": "../assets/img/cono-medio.jpg",
+    "price": 4.0,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "103",
+    "description": "Cono Grande 2",
+    "image": "../assets/img/cono-grande.jpg",
+    "price": 4.5,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "201",
+    "description": "Cono Piccolo 3",
+    "image": "../assets/img/cono-piccolo.jpg",
+    "price": 3.0,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "202",
+    "description": "Cono Medio 3",
+    "image": "../assets/img/cono-medio.jpg",
+    "price": 4.0,
+    "categoryId": "C01",
+    "extras": [
+      {
+        "extraId": "E01",
+        "order": 1
+      },
+      {
+        "extraId": "E02",
+        "order": 2
+      },
+      {
+        "extraId": "E03",
+        "order": 3
+      }
+    ]
+  },
+  {
+    "productId": "203",
+    "description": "Cono Grande 3",
+    "image": "../assets/img/cono-grande.jpg",
     "price": 4.5,
     "categoryId": "C01",
     "extras": [
@@ -62,6 +191,7 @@
   {
     "productId": "004",
     "description": "Coppetta Piccola",
+    "image": "../assets/img/coppetta-piccola.jpg",
     "price": 3.0,
     "categoryId": "C02",
     "extras": [
@@ -78,6 +208,7 @@
   {
     "productId": "005",
     "description": "Coppetta Media",
+    "image": "../assets/img/coppetta-media.jpg",
     "price": 4.0,
     "categoryId": "C02",
     "extras": [
@@ -94,6 +225,7 @@
   {
     "productId": "006",
     "description": "Coppetta Grande",
+    "image": "../assets/img/coppetta-grande.jpg",
     "price": 4.5,
     "categoryId": "C02",
     "extras": [
@@ -110,6 +242,7 @@
   {
     "productId": "007",
     "description": "Vaschetta 300g",
+    "image": "../assets/img/vaschetta-piccola.jpg",
     "price": 5.0,
     "categoryId": "C03",
     "extras": [
@@ -130,6 +263,7 @@
   {
     "productId": "008",
     "description": "Vaschetta 600g",
+    "image": "../assets/img/vaschetta-media.jpg",
     "price": 8.5,
     "categoryId": "C03",
     "extras": [
@@ -150,6 +284,7 @@
   {
     "productId": "009",
     "description": "Vaschetta 900g",
+    "image": "../assets/img/vaschetta-grande.jpg",
     "price": 10.0,
     "categoryId": "C03",
     "extras": [

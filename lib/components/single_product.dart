@@ -24,67 +24,70 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
         ?.rows
         .where((element) => element.productId == widget.prodotto.productId)
         .length;
-    return Column(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 188, 211),
-              borderRadius: BorderRadius.all(Radius.circular(12))),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 40, 8, 40),
-            child: Center(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Card(
+      elevation: 5,
+      color: const Color.fromARGB(255, 255, 188, 211),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              child: Image.asset(
+                widget.prodotto.image!,
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Text(widget.prodotto.description),
+            Text('${widget.prodotto.price.toString()} €'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.prodotto.description),
-                Row(
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        onPressed: () => ref
-                            .read(orderProvider.notifier)
-                            .removeItem(widget.prodotto.productId),
-                        child: const Icon(
-                          CupertinoIcons.minus,
-                          color: Colors.black,
-                        )),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black26),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('$itemQt'),
+                GestureDetector(
+                    onTap: () => ref
+                        .read(orderProvider.notifier)
+                        .removeItem(widget.prodotto.productId),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      child: const Icon(
+                        CupertinoIcons.minus,
+                        color: Colors.black,
                       ),
+                    )),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(0, 255, 255, 255),
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('$itemQt'),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => ref
+                      .read(orderProvider.notifier)
+                      .addItem(widget.prodotto.productId),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: const Icon(
+                      CupertinoIcons.add,
+                      color: Colors.black,
                     ),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        onPressed: () => ref
-                            .read(orderProvider.notifier)
-                            .addItem(widget.prodotto.productId),
-                        child: const Icon(
-                          CupertinoIcons.add,
-                          color: Colors.black,
-                        )),
-                  ],
+                  ),
                 ),
               ],
-            )),
-          ),
+            )
+          ],
         ),
-        const SizedBox(
-          height: 12,
-        )
-      ],
+      ),
     );
   }
 }

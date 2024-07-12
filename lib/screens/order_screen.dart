@@ -19,6 +19,7 @@ class OrderScreen extends ConsumerStatefulWidget {
 }
 
 class _OrderScreenState extends ConsumerState<OrderScreen> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     String? selectedCategory = ref.watch(categoryProvider);
@@ -26,6 +27,12 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
     List<ProductItem> filteredProd = Utils.products.where((element) {
       return element.categoryId == selectedCategory;
     }).toList();
+
+    if (filteredProd.length < 6) {
+      setState(() {
+        _selectedIndex = 0;
+      });
+    }
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -59,20 +66,68 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: ListView(
-                        children: filteredProd
-                            .map((element) => SingleProduct(
-                                prodotto: element,
-                                key: ValueKey(element.productId)))
-                            .toList(),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: GridView.builder(
+                              itemCount: filteredProd.length -
+                                          (_selectedIndex * 6) >=
+                                      6
+                                  ? 6
+                                  : filteredProd.length - (_selectedIndex * 6),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                              ),
+                              itemBuilder: (context, index) {
+                                return SingleProduct(
+                                  prodotto: filteredProd[
+                                      _selectedIndex == 0 ? index : index + 6],
+                                );
+                              },
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (_selectedIndex == 0) {
+                                      return;
+                                    }
+                                    _selectedIndex = _selectedIndex - 1;
+                                  });
+                                },
+                                child: const Text('Previous'),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              ElevatedButton(
+                                style: const ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Colors.amberAccent)),
+                                onPressed: () {
+                                  setState(() {
+                                    if (filteredProd.length -
+                                            (_selectedIndex * 6) <
+                                        6) {
+                                      return;
+                                    }
+                                    _selectedIndex = _selectedIndex + 1;
+                                  });
+                                },
+                                child: const Text('Next'),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 20,
             ),
           ],
         ),
@@ -80,4 +135,15 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
       bottomNavigationBar: const MyBottomBar(),
     );
   }
+}
+
+int itemCount(int index) {
+  if (index == 0) {
+    return 0;
+  }
+  return index < 6 ? index : 6;
+}
+
+int pageItemCount(int length, int index) {
+  return length - (index * 6);
 }
