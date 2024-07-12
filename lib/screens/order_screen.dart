@@ -91,14 +91,13 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (_selectedIndex == 0) {
-                                      return;
-                                    }
-                                    _selectedIndex = _selectedIndex - 1;
-                                  });
-                                },
+                                onPressed: _selectedIndex != 0
+                                    ? () {
+                                        setState(() {
+                                          _selectedIndex = _selectedIndex - 1;
+                                        });
+                                      }
+                                    : null,
                                 child: const Text('Previous'),
                               ),
                               const SizedBox(
@@ -108,16 +107,15 @@ class _OrderScreenState extends ConsumerState<OrderScreen> {
                                 style: const ButtonStyle(
                                     backgroundColor: WidgetStatePropertyAll(
                                         Colors.amberAccent)),
-                                onPressed: () {
-                                  setState(() {
-                                    if (filteredProd.length -
-                                            (_selectedIndex * 6) <
-                                        6) {
-                                      return;
-                                    }
-                                    _selectedIndex = _selectedIndex + 1;
-                                  });
-                                },
+                                onPressed: (filteredProd.length -
+                                            (_selectedIndex * 6) >=
+                                        6)
+                                    ? () {
+                                        setState(() {
+                                          _selectedIndex = _selectedIndex + 1;
+                                        });
+                                      }
+                                    : null,
                                 child: const Text('Next'),
                               ),
                             ],
