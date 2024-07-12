@@ -17,7 +17,15 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
   @override
   Widget build(BuildContext context) {
     var order = ref.read(orderProvider);
-    var orderList = ref.read(orderProvider)?.rows;
+
+    var totalPrice = ref.watch(orderProvider.notifier).getTotalPrice();
+
+    List<Widget> orderList = order?.rows
+        .map(
+          (e) => const SingleOrderItem(),
+        )
+        .toList() as List<Widget>;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -77,9 +85,9 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                                       'Riepilogo ordine',
                                       style: TextStyle(fontSize: 16),
                                     ),
-                                    const Text(
-                                      '0,00€',
-                                      style: TextStyle(fontSize: 16),
+                                    Text(
+                                      '$totalPrice €',
+                                      style: const TextStyle(fontSize: 16),
                                     ),
                                   ],
                                 ),
@@ -88,13 +96,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                           ),
                           Expanded(
                             child: ListView(
-                              children: const [
-                                SingleOrderItem(),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                SingleOrderItem(),
-                              ],
+                              children: orderList,
                             ),
                           ),
                           GestureDetector(

@@ -39,7 +39,7 @@ class SplashScreen extends ConsumerWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
