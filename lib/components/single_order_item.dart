@@ -22,10 +22,11 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
   Widget build(BuildContext context) {
     var order = ref.read(orderProvider);
     String productName = '';
+    String productPrice = '0.0';
     for (var i = 0; i < Utils.products.length; i++) {
-      print(productName);
       if (widget.row.productId == Utils.products[i].productId) {
         productName = Utils.products[i].description;
+        productPrice = Utils.products[i].price.toString();
       }
     }
 
@@ -44,9 +45,9 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
               '$productName ',
               style: const TextStyle(color: Colors.white),
             ),
-            const Row(
+            Row(
               children: [
-                Text('prezzo', style: TextStyle(color: Colors.white)),
+                Text('$productPrice €', style: TextStyle(color: Colors.white)),
                 Icon(CupertinoIcons.pencil, color: Colors.white),
                 Icon(
                   CupertinoIcons.delete,
