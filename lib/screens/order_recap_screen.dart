@@ -18,7 +18,7 @@ class OrderRecapScreen extends ConsumerStatefulWidget {
 class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
   @override
   Widget build(BuildContext context) {
-    var order = ref.read(orderProvider);
+    var order = ref.watch(orderProvider);
 
     var totalPrice = ref.watch(orderProvider.notifier).getTotalPrice();
 

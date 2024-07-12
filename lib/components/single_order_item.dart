@@ -20,7 +20,7 @@ class SingleOrderItem extends ConsumerStatefulWidget {
 class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
   @override
   Widget build(BuildContext context) {
-    var order = ref.read(orderProvider);
+    var order = ref.watch(orderProvider);
     String productName = '';
     String productPrice = '0.0';
     for (var i = 0; i < Utils.products.length; i++) {
