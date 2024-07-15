@@ -1,24 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem_test/models/extra_item.dart';
+import 'package:totem_test/models/order_item.dart';
+import 'package:totem_test/models/product_item.dart';
+import 'package:totem_test/providers/order_provider.dart';
+import 'package:totem_test/services/utlis.dart';
 import 'package:uuid/uuid.dart';
 
-class ExtrasModal extends StatefulWidget {
-  const ExtrasModal({
-    super.key,
-    /* required this.rowId */
-  });
+class ExtrasModal extends ConsumerStatefulWidget {
+  const ExtrasModal({super.key, required this.product});
 
-  /* final String rowId; */
+  final ProductItem product;
 
   @override
-  State<ExtrasModal> createState() => _ExtrasModalState();
+  ConsumerState<ExtrasModal> createState() => _ExtrasModalState();
 }
 
-class _ExtrasModalState extends State<ExtrasModal> {
+class _ExtrasModalState extends ConsumerState<ExtrasModal> {
+  late OrderItem orderTemp;
+  int selectedProductIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    orderTemp = ref.read(orderProvider)!.clone();
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<OrderRowItem> rowsPerProducts = orderTemp.rows
+        .where((element) => element.productId == widget.product.productId)
+        .toList();
+
     return Dialog(
-      insetPadding: const EdgeInsets.all(20),
+      insetPadding: const EdgeInsets.fromLTRB(40, 80, 40, 80),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -33,36 +49,70 @@ class _ExtrasModalState extends State<ExtrasModal> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(CupertinoIcons.arrow_left)),
-                      const Text('Gelato x'),
+                          onPressed: (selectedProductIndex > 0)
+                              ? () {
+                                  setState(() {
+                                    selectedProductIndex--;
+                                  });
+                                }
+                              : null,
+                          icon: const Icon(
+                              CupertinoIcons.arrowtriangle_left_fill,
+                              size: 40)),
+                      Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              widget.product.image!,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Text(
+                            '${widget.product.description} ${selectedProductIndex + 1}',
+                            style: const TextStyle(fontSize: 22),
+                          ),
+                        ],
+                      ),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(CupertinoIcons.arrow_right)),
+                          onPressed: (selectedProductIndex <
+                                  rowsPerProducts.length - 1)
+                              ? () {
+                                  setState(() {
+                                    selectedProductIndex++;
+                                  });
+                                }
+                              : null,
+                          icon: const Icon(
+                              CupertinoIcons.arrowtriangle_right_fill,
+                              size: 40)),
                     ],
                   ),
                 ],
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: ListView(
-                  children: const [
-                    ExtrasRow(),
-                    ExtrasRow(),
-                    ExtrasRow(),
-                    ExtrasRow(),
-                  ],
+                  children: widget.product.extras!.map((extra) {
+                    return ExtrasRow(
+                      key: Key(Uuid().v4()),
+                      extra: Utils.getExtra(extra.extraId),
+                    );
+                  }).toList(),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                     child: const Text('Annulla'),
                   ),
                   OutlinedButton(
@@ -79,21 +129,29 @@ class _ExtrasModalState extends State<ExtrasModal> {
   }
 }
 
-class ExtrasRow extends StatelessWidget {
-  const ExtrasRow({
+class ExtrasRow extends StatefulWidget {
+  ExtrasRow({
     super.key,
+    required this.extra,
   });
 
+  ExtraItem extra;
+
+  @override
+  State<ExtrasRow> createState() => _ExtrasRowState();
+}
+
+class _ExtrasRowState extends State<ExtrasRow> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        const Text('extra 1'),
+        Text(widget.extra.description),
         Switch(
           value: false,
           onChanged: (value) {},
-          activeColor: Colors.pink.shade900,
+          activeColor: Colors.pink.shade100,
         )
       ],
     );

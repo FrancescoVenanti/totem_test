@@ -44,4 +44,8 @@ class Utils {
       return element.productId == productId;
     }).length;
   }
+
+  static ExtraItem getExtra(String id) {
+    return extras.firstWhere((element) => element.extraId == id);
+  }
 }

@@ -26,8 +26,9 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
         .where((element) => element.productId == widget.prodotto.productId)
         .length;
     return Card(
-      elevation: 5,
+      elevation: 2,
       color: const Color.fromARGB(255, 255, 188, 211),
+      borderOnForeground: true,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -46,15 +47,22 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                   ),
                 ),
                 TextButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => ExtrasModal(),
-                      );
-                    },
-                    child: const Icon(
+                    onPressed: itemQt! > 0
+                        ? () {
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) => ExtrasModal(
+                                product: widget.prodotto,
+                              ),
+                            );
+                          }
+                        : null,
+                    child: Icon(
                       CupertinoIcons.pencil,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: itemQt > 0
+                          ? Color.fromARGB(255, 0, 0, 0)
+                          : Colors.black26,
                     )),
               ],
             ),
