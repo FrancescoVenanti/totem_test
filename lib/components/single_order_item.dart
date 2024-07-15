@@ -33,8 +33,8 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(203, 223, 223, 223),
-        borderRadius: BorderRadius.circular(12),
+        color: Color.fromARGB(255, 255, 255, 255),
+        borderRadius: BorderRadius.circular(50),
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -44,7 +44,7 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
             Row(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Image.asset(
                     Utils.products
                         .firstWhere((element) =>
@@ -71,13 +71,13 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
                         const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
                 const Icon(CupertinoIcons.pencil,
                     color: Color.fromARGB(255, 0, 0, 0)),
-                ElevatedButton(
+                IconButton(
                   onPressed: () {
                     ref
                         .read(orderProvider.notifier)
                         .removeRow(widget.row.rowId);
                   },
-                  child: const Icon(
+                  icon: const Icon(
                     CupertinoIcons.delete,
                     color: Colors.red,
                   ),

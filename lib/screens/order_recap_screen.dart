@@ -62,7 +62,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 12),
                           child: Container(
                             width: double.infinity,
                             height: 60,
@@ -87,6 +87,9 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                                     'Riepilogo ordine',
                                     style: TextStyle(fontSize: 16),
                                   ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
                                 ],
                               ),
                             ),
@@ -103,6 +106,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                                 builder: (context) => const PaymentScreen()));
                           },
                           child: Container(
+                            margin: EdgeInsets.only(top: 10),
                             width: double.infinity,
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                             decoration: BoxDecoration(
