@@ -20,6 +20,7 @@ class SingleOrderItem extends ConsumerStatefulWidget {
 class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var order = ref.watch(orderProvider);
     String productName = '';
     String productPrice = '0.0';
@@ -33,7 +34,7 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: const Color.fromARGB(255, 255, 255, 255),
         borderRadius: BorderRadius.circular(50),
       ),
       child: Padding(

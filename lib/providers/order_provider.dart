@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem_test/models/extra_item.dart';
 import 'package:totem_test/models/order_item.dart';
 import 'package:totem_test/services/utlis.dart';
 
@@ -57,6 +58,20 @@ class OrderProvider extends StateNotifier<OrderItem?> {
     tempOrder?.rows.remove(elementToRemove);
 
     state = tempOrder;
+  }
+
+  void addExtra(OrderItem tempOrder) {
+    OrderItem tempOrder2 = state!.clone();
+
+    for (int i = 0; i < tempOrder2.rows.length; i++) {
+      for (final newRow in tempOrder.rows) {
+        if (tempOrder2.rows[i].rowId == newRow.rowId) {
+          tempOrder2.rows[i].extras = newRow.extras;
+        }
+      }
+
+      state = tempOrder2;
+    }
   }
 }
 

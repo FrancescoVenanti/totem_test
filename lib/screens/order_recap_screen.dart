@@ -67,7 +67,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                             width: double.infinity,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                               borderRadius: BorderRadius.circular(40),
                             ),
                             child: Padding(
@@ -106,7 +106,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                                 builder: (context) => const PaymentScreen()));
                           },
                           child: Container(
-                            margin: EdgeInsets.only(top: 10),
+                            margin: const EdgeInsets.only(top: 10),
                             width: double.infinity,
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                             decoration: BoxDecoration(
@@ -122,7 +122,7 @@ class _OrderRecapScreenState extends ConsumerState<OrderRecapScreen> {
                                 Container(
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Color.fromARGB(159, 255, 183, 0),
+                                    color: const Color.fromARGB(159, 255, 183, 0),
                                     borderRadius: BorderRadius.circular(40),
                                   ),
                                   child: const Padding(

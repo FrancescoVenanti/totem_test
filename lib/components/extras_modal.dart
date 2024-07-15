@@ -24,7 +24,14 @@ class _ExtrasModalState extends ConsumerState<ExtrasModal> {
   @override
   void initState() {
     super.initState();
-    orderTemp = ref.read(orderProvider)!.clone();
+    setState(() {
+      orderTemp = OrderItem(
+          rows: ref
+              .read(orderProvider)!
+              .rows
+              .where((element) => element.productId == widget.product.productId)
+              .toList());
+    });
   }
 
   @override
@@ -99,9 +106,37 @@ class _ExtrasModalState extends ConsumerState<ExtrasModal> {
                 height: MediaQuery.of(context).size.height * 0.5,
                 child: ListView(
                   children: widget.product.extras!.map((extra) {
-                    return ExtrasRow(
-                      key: Key(Uuid().v4()),
-                      extra: Utils.getExtra(extra.extraId),
+                    String extraText =
+                        Utils.getExtra(extra.extraId).description;
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(extraText),
+                        Switch(
+                          value: orderTemp.rows[selectedProductIndex].extras!
+                              .where(
+                                  (element) => element.extraId == extra.extraId)
+                              .isNotEmpty,
+                          onChanged: (value) {
+                            setState(() {
+                              if (value) {
+                                orderTemp.rows[selectedProductIndex].extras!
+                                    .add(
+                                  OrderExtraItem(
+                                    extraId: extra.extraId,
+                                    qty: 1,
+                                  ),
+                                );
+                              } else {
+                                orderTemp.rows[selectedProductIndex].extras!
+                                    .removeWhere((element) =>
+                                        element.extraId == extra.extraId);
+                              }
+                            });
+                          },
+                          activeColor: Colors.pink.shade100,
+                        ),
+                      ],
                     );
                   }).toList(),
                 ),
@@ -116,7 +151,10 @@ class _ExtrasModalState extends ConsumerState<ExtrasModal> {
                     child: const Text('Annulla'),
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(orderProvider.notifier).addExtra(orderTemp);
+                      Navigator.of(context).pop();
+                    },
                     child: const Text('OK'),
                   ),
                 ],
@@ -129,31 +167,33 @@ class _ExtrasModalState extends ConsumerState<ExtrasModal> {
   }
 }
 
-class ExtrasRow extends StatefulWidget {
-  ExtrasRow({
-    super.key,
-    required this.extra,
-  });
 
-  ExtraItem extra;
 
-  @override
-  State<ExtrasRow> createState() => _ExtrasRowState();
-}
 
-class _ExtrasRowState extends State<ExtrasRow> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(widget.extra.description),
-        Switch(
-          value: false,
-          onChanged: (value) {},
-          activeColor: Colors.pink.shade100,
-        )
-      ],
-    );
-  }
-}
+/* return ExtrasRow(
+                      key: Key(const Uuid().v4()),
+                      extra: Utils.getExtra(extra.extraId),
+                      selected: orderTemp.rows[selectedProductIndex].extras!
+                          .contains(OrderExtraItem(
+                        extraId: extra.extraId,
+                        qty: 1,
+                      )),
+                      onChanged: (value) {
+                        setState(() {
+                          if (value) {
+                            orderTemp.rows[selectedProductIndex].extras!.add(
+                              OrderExtraItem(
+                                extraId: extra.extraId,
+                                qty: 1,
+                              ),
+                            );
+                          } else {
+                            orderTemp.rows[selectedProductIndex].extras!
+                                .remove(OrderExtraItem(
+                              extraId: extra.extraId,
+                              qty: 1,
+                            ));
+                          }
+                        });
+                      },
+                    ); */

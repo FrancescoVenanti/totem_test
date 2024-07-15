@@ -17,6 +17,7 @@ class TopBar extends ConsumerStatefulWidget {
 class _TopBarState extends ConsumerState<TopBar> {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var orderWatcher = ref.watch(orderProvider);
     String? badgeCounter = ref.watch(orderProvider)?.rows.length.toString();
     num? totalPrice = ref.watch(orderProvider.notifier).getTotalPrice();

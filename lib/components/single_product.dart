@@ -54,6 +54,7 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                               context: context,
                               builder: (context) => ExtrasModal(
                                 product: widget.prodotto,
+                                key: UniqueKey(),
                               ),
                             );
                           }
@@ -61,7 +62,7 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                     child: Icon(
                       CupertinoIcons.pencil,
                       color: itemQt > 0
-                          ? Color.fromARGB(255, 0, 0, 0)
+                          ? const Color.fromARGB(255, 0, 0, 0)
                           : Colors.black26,
                     )),
               ],
