@@ -33,23 +33,44 @@ class _SingleOrderItemState extends ConsumerState<SingleOrderItem> {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(111, 111, 111, 111),
+        color: Color.fromARGB(203, 223, 223, 223),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              '$productName ',
-              style: const TextStyle(color: Colors.white),
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  child: Image.asset(
+                    Utils.products
+                        .firstWhere((element) =>
+                            element.productId == widget.row.productId)
+                        .image!,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  '$productName ',
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+              ],
             ),
             Row(
               children: [
                 Text('$productPrice €',
-                    style: const TextStyle(color: Colors.white)),
-                const Icon(CupertinoIcons.pencil, color: Colors.white),
+                    style:
+                        const TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                const Icon(CupertinoIcons.pencil,
+                    color: Color.fromARGB(255, 0, 0, 0)),
                 ElevatedButton(
                   onPressed: () {
                     ref

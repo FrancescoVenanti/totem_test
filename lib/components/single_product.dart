@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:totem_test/components/extras_modal.dart';
 import 'package:totem_test/models/product_item.dart';
 import 'package:totem_test/providers/order_provider.dart';
 
@@ -32,14 +33,30 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: Image.asset(
-                widget.prodotto.image!,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  child: Image.asset(
+                    widget.prodotto.image!,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => ExtrasModal(),
+                      );
+                    },
+                    child: const Icon(
+                      CupertinoIcons.pencil,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    )),
+              ],
             ),
             Text(widget.prodotto.description),
             Text('${widget.prodotto.price.toString()} €'),
@@ -84,7 +101,7 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -29,36 +29,36 @@ class _TopBarState extends ConsumerState<TopBar> {
         color: const Color.fromARGB(255, 255, 188, 211),
       ),
       child: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          badges.Badge(
-            badgeStyle: const badges.BadgeStyle(
-                badgeColor: Color.fromARGB(255, 238, 61, 120)),
-            badgeContent: Text(
-              badgeCounter.toString(),
-              style: const TextStyle(color: Colors.white),
-            ),
-            child: const Icon(
-              Icons.shopping_cart,
-              size: 32,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Il tuo ordine',
-                style: TextStyle(fontSize: 18),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            badges.Badge(
+              badgeStyle: const badges.BadgeStyle(
+                  badgeColor: Color.fromARGB(255, 238, 61, 120)),
+              badgeContent: Text(
+                badgeCounter.toString(),
+                style: const TextStyle(color: Colors.white),
               ),
-              Text(
-                '$totalPrice €',
-                style: const TextStyle(fontSize: 18),
+              child: const Icon(
+                Icons.shopping_cart,
+                size: 32,
               ),
-            ],
-          ),
-          const SizedBox(),
-          ElevatedButton(
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Il tuo ordine',
+                  style: TextStyle(fontSize: 18),
+                ),
+                Text(
+                  '$totalPrice €',
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ],
+            ),
+            const SizedBox(),
+            ElevatedButton(
               style: const ButtonStyle(
                   padding: WidgetStatePropertyAll(
                       EdgeInsets.fromLTRB(12, 20, 12, 20)),
@@ -84,9 +84,11 @@ class _TopBarState extends ConsumerState<TopBar> {
                     size: 8,
                   )
                 ],
-              ))
-        ],
-      )),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
