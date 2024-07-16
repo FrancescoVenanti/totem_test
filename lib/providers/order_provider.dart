@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:totem_test/models/extra_item.dart';
 import 'package:totem_test/models/order_item.dart';
 import 'package:totem_test/services/utlis.dart';
 
@@ -40,12 +39,41 @@ class OrderProvider extends StateNotifier<OrderItem?> {
     return state?.rows.length.toString();
   }
 
+  num extraPriceforProducts(String productId) {
+    num prezzo = 0;
+    for (var e in state!.rows) {
+      for (var i = 0; i < Utils.products.length; i++) {
+        if (e.productId == Utils.products[i].productId) {
+          if (e.extras?.isNotEmpty == true) {
+            for (var extra in e.extras!) {
+              for (var j = 0; j < Utils.products[i].extras!.length; j++) {
+                if (extra.extraId == Utils.products[i].extras![j].extraId) {
+                  prezzo += Utils.extras[j].price!;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return prezzo;
+  }
+
   num getTotalPrice() {
     num prezzo = 0;
     for (var e in state!.rows) {
       for (var i = 0; i < Utils.products.length; i++) {
         if (e.productId == Utils.products[i].productId) {
           prezzo += Utils.products[i].price * e.qty;
+          if (e.extras?.isNotEmpty == true) {
+            for (var extra in e.extras!) {
+              for (var j = 0; j < Utils.products[i].extras!.length; j++) {
+                if (extra.extraId == Utils.products[i].extras![j].extraId) {
+                  prezzo += Utils.extras[j].price!;
+                }
+              }
+            }
+          }
         }
       }
     }

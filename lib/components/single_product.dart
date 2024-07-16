@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:totem_test/components/extras_modal.dart';
 import 'package:totem_test/models/product_item.dart';
 import 'package:totem_test/providers/order_provider.dart';
+import 'package:totem_test/services/utlis.dart';
 
 class SingleProduct extends ConsumerStatefulWidget {
   const SingleProduct({
@@ -68,7 +69,7 @@ class _SingleProductState extends ConsumerState<SingleProduct> {
               ],
             ),
             Text(widget.prodotto.description),
-            Text('${widget.prodotto.price.toString()} €'),
+            Text('${widget.prodotto.price} €'),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

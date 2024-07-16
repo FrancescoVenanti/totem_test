@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:totem_test/models/extra_item.dart';
 import 'package:totem_test/models/order_item.dart';
 import 'package:totem_test/models/product_item.dart';
 import 'package:totem_test/providers/order_provider.dart';
 import 'package:totem_test/services/utlis.dart';
-import 'package:uuid/uuid.dart';
 
 class ExtrasModal extends ConsumerStatefulWidget {
   const ExtrasModal({super.key, required this.product});

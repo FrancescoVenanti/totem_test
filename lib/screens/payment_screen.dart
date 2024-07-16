@@ -46,11 +46,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
-                            Icons.icecream,
-                            color: Colors.white,
-                            size: 38,
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -79,39 +74,55 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.35,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  child: Image.asset(
-                                    '../assets/img/pagaTotem.jpg',
-                                    fit: BoxFit.cover,
+                              Column(
+                                children: [
+                                  const Text('Paga qui',
+                                      style: TextStyle(
+                                          fontSize: 24, color: Colors.white)),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.35,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
+                                      child: Image.asset(
+                                        '../assets/img/pagaTotem.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.35,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20)),
-                                  child: Image.asset(
-                                    '../assets/img/pagaCassa.jpg',
-                                    fit: BoxFit.cover,
+                              Column(
+                                children: [
+                                  const Text('Paga in cassa',
+                                      style: TextStyle(
+                                          fontSize: 24, color: Colors.white)),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.35,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20)),
+                                      child: Image.asset(
+                                        '../assets/img/pagaCassa.jpg',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               )
                             ],
                           ),
