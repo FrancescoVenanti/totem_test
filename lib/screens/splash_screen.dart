@@ -12,14 +12,6 @@ class SplashScreen extends ConsumerWidget {
     super.key,
   });
 
-  final myGradient = const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomLeft,
-      colors: [
-        Color.fromARGB(255, 255, 150, 185),
-        Color.fromARGB(255, 255, 255, 255),
-      ]);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
